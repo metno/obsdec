@@ -1,0 +1,19 @@
+README 2017-04-11
+
+libdec.a is needed for compilation of nix_arep, nix_meta, nix_pilo and
+nix_temp (see arep.make, meta.make, pilo.make and temp.make in ../binsrc)
+
+libdecx.a is needed for compilation of drau2bufr and syno2bufr (see
+Makefile in ../binsrc/obs2bufr).
+
+Source code for libdec.a in ../libsrc1 and ../include1.
+Source code for libdecx.a in ../libsrc2 and ../include2.
+
+libdecx.a differs from libdec.a in that routines not needed in
+<obstype>2bufr have been stripped off (most notably BUFR handling
+routines which have replacements in libbufr), and subroutines used in
+more than one <obstype>2bufr have been added (and datum.f has been
+completely rewritten).
+
+Originally, all nix_<obstype>.F were planned to be replaced by
+<obstype>2bufr.F and then libdec.a would no longer needed.
