@@ -1,0 +1,18 @@
+# include file for make for decoding programs,
+# specific for ARCH=linux
+
+MOVE = "   NOTE: You must manually move compiled file to BINDIR"
+
+##########
+# Linux
+##########
+
+FC = gfortran
+FCFLAGS1 = -D FORTRAN90 -D LITTLE_ENDIAN
+FCFLAGS2 = 
+
+#LBUFRDIR = /usr/local/lib
+LBUFRDIR = /disk1/bufr/bufrdc/bufrdc_000409
+LMIDIR = /usr/lib
+
+MI = mi
