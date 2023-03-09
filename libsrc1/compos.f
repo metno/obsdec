@@ -1,0 +1,146 @@
+      SUBROUTINE COMPOS (RLAT1,RLON1,ICM1,
+     X                   RLAT2,RLON2,ICM2,
+     X                   RLAT3,RLON3,ICM3,LSHIP,LCHECK,IFLAG)
+C
+C****  *COMPOS*
+C
+C       PURPOSE.
+C      ----------
+C
+C        COMPARE A POSITION REPORT WITH 2 PREVIOUS POSITIONS
+C
+C       INTERFACE.
+C      ------------
+C
+C           CALL COMPOS (RLAT1,RLON1,ICM1,
+C                        RLAT2,RLON2,ICM2,
+C                        RLAT3,RLON3,ICM3,LSHIP,LCHECK,IFLAG)
+C
+C        INPUT
+C          RLAT1,RLON1,ICM1 -
+C                  -  LATITUDE, LONGITUDE AND TIME IN MINUTES
+C                     OF OLDEST REPORT
+C          RLAT2,RLON2,ICM2 -
+C                  -  LATITUDE, LONGITUDE AND TIME IN MINUTES
+C                     OF MIDDLE REPORT
+C          RLAT3,RLON3,ICM3 -
+C                  -  LATITUDE, LONGITUDE AND TIME IN MINUTES
+C                     OF CURRENT REPORT
+C          LSHIP   - LOGICAL : TRUE IF SHIP
+C
+C        OUTPUT
+C          LCHECK  -  LOGICAL WHETHER CHECKING POSSIBLE
+C          IFLAG   -  CONFIDENCE APPLIED TO CURRENT POSITION
+C
+C       METHOD.
+C      ---------
+C
+C         LINEARLY EXTRAPOLATE POSITIONS 1 AND 2 TO GET AN ESTIMATE (E)
+C         OF POSITION 3.  POSITION 3 SHOULD FALL WITHIN A CIRCLE CENTRED
+C         AT E AND WITH RADIUS BASED ON THE DISTANCE 2 TO E AND THE TIME
+C         DIFFERENCE 2 TO 3.  CONFIDENCE DEPENDS ON THE DISTANCE OF 3
+C         FROM THE CENTRE.
+C
+C       EXTERNALS.
+C      ------------
+C
+C         D2PTS    -  DISTANCE BETWEEN 2 POINTS ON EARTH'S SURFACE
+C
+C       REFERENCE.
+C      ------------
+C
+C         NONE
+C
+C       AUTHOR.
+C      ---------
+C
+C         B. NORRIS,  ECMWF,  MARCH 1990
+C         BASED ON CODE WRITTEN FOR NOS/BE IN 1982
+C
+C       MODIFICATIONS.
+C      ----------------
+C
+C         NONE
+C
+      LOGICAL LCHECK,LSHIP
+C
+C    ----------------------------------------------------------------------
+C
+C                   1.  INITIALISATION
+C                  --------------------
+C
+  100 CONTINUE
+C              ZSCALE = RADIUS OF EARTH IN KM
+      DATA ZSCALE/6371./
+      LCHECK=.FALSE.
+C
+C    ---------------------------------------------------------------------
+C
+C                   2.  CHECK POSITION
+C                  --------------------
+C
+  200 CONTINUE
+C
+C           2.1  CHECK TIME DIFFERENCE
+C
+      ICMD=ICM3-ICM2
+      ICME=ICM2-ICM1
+      IF(LSHIP) THEN
+         ITOOLD=2160
+      ELSE
+         ITOOLD=360
+      ENDIF
+C
+      IF(ICMD.GT.ITOOLD.OR.ICME.GT.ITOOLD) GO TO 300
+      IF(LSHIP.AND.ICME.LT.60) ICME=60
+      IF(ICME.LT.1) ICME=1
+      RCMF=FLOAT(ICMD)/FLOAT(ICME)
+C
+C           2.2  OBTAIN ESTIMATE OF POSITION IN RLATE & RLONE
+C
+      RLATE=RCMF*(RLAT2-RLAT1)+RLAT2
+      RLO1=RLON1
+      RLO2=RLON2
+      IF(RLO1.LT.-90.0.AND.RLO2.GT.0.0) RLO1=RLO1+360.0
+      IF(RLO1.GT. 90.0.AND.RLO2.LT.0.0) RLO1=RLO1-360.0
+      RLONE=RCMF*(RLO2-RLO1)+RLO2
+      IF(ABS(RLATE).GT.90.0) THEN
+           RLATE=SIGN(180.0,RLATE)-RLATE
+           RLONE=RLONE+180.0
+      ENDIF
+      IF(RLONE.GT.180.0) RLONE=RLONE-360.0
+      IF(RLONE.GT.180.0) RLONE=RLONE-360.0
+      IF(RLONE.LT.-180.0) RLONE=RLONE+360.0
+C
+C          2.3  OBTAIN DISTANCE BETWEEN ESTIMATED AND SECOND POSITION
+C
+      CALL D2PTS (RLAT2,RLON2,RLATE,RLONE,ZSCALE,DIST2E)
+C
+C          2.4  OBTAIN DISTANCE BETWEEN ESTIMATED AND THIRD POSITION
+C
+      CALL D2PTS (RLAT3,RLON3,RLATE,RLONE,ZSCALE,DIST3E)
+C
+C          2.5  ASSIGN CONFIDENCE DEPENDING ON RADIUS ALLOWED
+C
+      IF(LSHIP) THEN
+         RAVGDIST=30.0
+      ELSE
+         RAVGDIST=200.0
+      ENDIF
+C
+      RAD=DIST2E+RAVGDIST+FLOAT(ICMD)/2.0
+      IFLAG=90.0-(40.0*DIST3E)/RAD
+C
+      IF(IFLAG.LT.0) IFLAG=0
+      LCHECK=.TRUE.
+C     WRITE (*,'(1H ,2I6,2F10.2,3F8.1)')
+C    X     ICMD,ICME,RLATE,RLONE,DIST2E,DIST3E,RAD
+C
+C    ---------------------------------------------------------------------
+C
+C                       3.  EXIT
+C                      ----------
+C
+  300 CONTINUE
+      RETURN
+      END

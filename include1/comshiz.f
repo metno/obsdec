@@ -1,0 +1,15 @@
+C
+C        COMMON *COMSHIZ* -  ARRAY OF SHIP HEIGHTS
+C
+C            NSHIZ    -  NUMBER OF SHIP HEIGHTS
+C            SHIZ     -  LIST OF SHIP HEIGHTS
+C            CSHIZ    -  CORRESPONDING SHIP CALL SIGNS
+C            IFSHIZ   -  INDICATOR FOR FILE HAVING BEEN READ
+C
+      COMMON/COMSHIZ/NSHIZ,SHIZ(NMSHIZ),IFSHIZ
+      COMMON/COMSHIC/CSHIZ(NMSHIZ)
+C
+      CHARACTER*9 CSHIZ
+C
+C   -------------------------------------------------------------------
+C

@@ -1,0 +1,3 @@
+C
+      COMMON/COMMDB/ MSYS,MSYSTOP,msysdsi,OSTREAM
+C

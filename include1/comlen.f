@@ -1,0 +1,3 @@
+C
+      COMMON /COMLEN/ ITOTAL
+C

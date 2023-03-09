@@ -1,0 +1,16 @@
+      COMMON /COMWT/ IWTR(JP2),IWTS(JP2),IWTRV(JP2),
+     1               VALUES(JP2,JP1),
+     1               IWTDW(JP2),M,N,NSUB,MQ,
+     2               L11,L12,L21,L22,L31,L32,L33,NDATA,NT,NC,
+     3               LSHEAR,NSNUM
+C
+C           IWTR -    BUFR TABLE B REFERENCE
+C           IWTS -    SCALE
+C           IWTRV-    REFERENCE VALUE
+C           VALUES-   ARRAY CONTAINING REAL VALUES.
+C           VALUEW-   ARRAY CONTAINING REAL VALUES.
+C
+C           M      -  NUMBER OF DATA DECSRIPTORS
+C           N      -  NUMBER OF SUB-SETS
+C           NSUB   -  NUMBER OF SUB-SETS (COUNTER)   
+C           NSNUM  -  UPDATED SEQUENCE NUMBER OF BUFR REPORT

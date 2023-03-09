@@ -1,0 +1,6 @@
+      real shgt(100)
+C
+      COMMON/COMSH/ SHGT
+C
+C     SHGT  - ARRAY CONTAINING SHIP DECK HEIGHTS
+C

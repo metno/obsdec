@@ -1,0 +1,8 @@
+cpsfeb07 Increased JELEM from 20000 to 30000
+cpsoct08 Increased JSEC2 from 64 to 4096
+C     
+      PARAMETER(JSUP =   9,JSEC0=   3,JSEC1= 40,JSEC2= 4096,JSEC3=    4,
+     1          JSEC4=   2,JELEM=30000,JSUBS=400,JCVAL=150 ,JBUFL= 8192,
+     2          JBPW =  32,JTAB = 1000,JCTAB=120,JCTST=1800,JCTEXT=1200,
+     3          JWORK=80000,JKEY=46)
+C
