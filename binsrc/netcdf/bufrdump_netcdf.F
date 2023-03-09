@@ -1,4 +1,4 @@
-C (C) Copyright 2010-2019 MET Norway
+C (C) Copyright 2010-2023 MET Norway
 C
 C This program is free software; you can redistribute it and/or modify
 C it under the terms of the GNU General Public License as published by
