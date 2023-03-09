@@ -6,7 +6,7 @@ default:
 	@ echo "arep meta pilo temp"
 
 clean:
-	rm *.o
+	rm -f *.o arep meta pilo temp
 
 all:	
 	make -f arep.make

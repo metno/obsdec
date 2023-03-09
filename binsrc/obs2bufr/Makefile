@@ -10,7 +10,6 @@ IDIR = ../../include2
 LDIR = ../../lib
 
 LBUFRDIR = /usr/local/lib
-#LBUFRDIR = /disk1/bufr/bufrdc/bufrdc_000409
 
 MOVE = "   NOTE: You must manually move compiled file to BINDIR"
 

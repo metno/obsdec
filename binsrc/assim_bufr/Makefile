@@ -1,6 +1,6 @@
-# Makefile for some bufr filter programs, using gfortran
+# Makefile for some bufr filter programs used in NWP preprocessing
 
-# Before running Bufr-decoding programs: run
+# Before running Bufr-decoding programs you should probably do
 # 	export BUFR_TABLES=/usr/local/lib/bufrtables/
 
 CC = gcc
@@ -9,7 +9,6 @@ FC = gfortran
 FCFLAGS = -g -O2 -fdefault-real-8 -fbackslash
 
 LDIR = /usr/local/lib/
-LMIDIR = /usr/local/lib/
 LFLAGS = -Wl,-rpath=$(LDIR)
 
 .SUFFIXES: .o .c .F
@@ -28,6 +27,9 @@ LFLAGS = -Wl,-rpath=$(LDIR)
 
 
 all: amdarbufr2hirbufr surfacebufr2hirbufr tempbufr2hirbufr
+
+clean:
+	rm -f *.o amdarbufr2hirbufr surfacebufr2hirbufr tempbufr2hirbufr
 
 amdarbufr2hirbufr: amdarbufr2hirbufr.F
 	$(FC) $(FCFLAGS) -o $@ $< -L $(LDIR) -lbufr
