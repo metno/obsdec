@@ -1,4 +1,4 @@
-obsdec inneholder all kildekode som trengs for å kompilere opp Fortranprogrammene som inngår i ecflowsuite-obsdec/bin, i tillegg til noen få Fortranprogrammer brukt i NWP preprosessering (katalogen binsrc/assim_bufr).
+obsdec inneholder all kildekode som trengs for å kompilere opp fortranprogrammene som inngår i ecflowsuite-obsdec/bin, i tillegg til noen få fortranprogrammer brukt i NWP preprosessering (katalogen binsrc/assim_bufr).
 
 Framgangsmåte ved kompilering:
 
@@ -9,17 +9,23 @@ cd obsdec/libsrc2
 make
 ```
 
-Dette vil kompilere opp libdec.a og libdecx.a i obsdec/lib. Se README i denne katalogen for bakgrunnen for disse to bibliotekene.
+Dette vil kompilere opp libdec.a og libdecx.a i obsdec/lib som trengs for kompilering av fortranprogrammene i obsdec/binsr og obsdec/binsrc/obs2bufr henholdsvis. Se obsdec/lib/README for bakgrunnen for disse to bibliotekene.
 
 ```
 cd obsdec/binsrc
 make all
 
 cd obsdec/binsrc/obs2bufr
-make
+make all
 
 cd obsdec/binsrc/assim_bufr
-make
+make all
 ```
 
-Merk at de kompilerte programmene blir lagt i kildekatalogen hvor kompileringen foregår. Kompileringen krever at libbufr.a (fra ECMWF BUFRDC) er installert i /usr/local/lib.
+Rydding i hver av de 3 katalogene over kan gjøres med
+
+```
+make clean
+```
+
+Merk at de kompilerte programmene i binsrc med underkataloger blir lagt i kildekatalogen hvor kompileringen foregår. Kompileringen krever at libbufr.a (fra ECMWF BUFRDC) er installert i /usr/local/lib.
