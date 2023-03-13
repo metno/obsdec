@@ -32,10 +32,10 @@ clean:
 	rm -f *.o amdarbufr2hirbufr surfacebufr2hirbufr tempbufr2hirbufr
 
 amdarbufr2hirbufr: amdarbufr2hirbufr.F
-	$(FC) $(FCFLAGS) -o $@ $< -L $(LDIR) -lbufr
+	$(FC) $(FCFLAGS) -o $@ $< -L $(LDIR) -lbufrR64
 
 surfacebufr2hirbufr: surfacebufr2hirbufr.F
-	$(FC) $(FCFLAGS) -o $@ $< -L $(LDIR) -lbufr
+	$(FC) $(FCFLAGS) -o $@ $< -L $(LDIR) -lbufrR64
 
 tempbufr2hirbufr: tempbufr2hirbufr.F
-	$(FC) $(FCFLAGS) -o $@ $< -L $(LDIR) -lbufr
+	$(FC) $(FCFLAGS) -o $@ $< -L $(LDIR) -lbufrR64

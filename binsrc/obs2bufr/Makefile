@@ -27,9 +27,9 @@ clean:
 # Note: the order of -ldecx -lbufr does matter (or else error messages
 # occur). Also, the order of the -L directories might be important (if
 # an invalid libbufr.a happens to be in $LDIR)
-syno2bufr: syno2bufr.o $(LDIR)/libdecx.a $(LBUFRDIR)/libbufr.a
+syno2bufr: syno2bufr.o $(LDIR)/libdecx.a $(LBUFRDIR)/libbufrR64.a
 	$(FC) -o syno2bufr syno2bufr.o \
-	-L $(LBUFRDIR) -L $(LDIR) -ldecx -lbufr 
+	-L $(LBUFRDIR) -L $(LDIR) -ldecx -lbufrR64 
 	@ echo "$(MOVE)"
 
 syno2bufr.o: $(IDIR)/combuff.f $(IDIR)/comdir.f  $(IDIR)/comindx.f \
@@ -41,9 +41,9 @@ syno2bufr.o: $(IDIR)/combuff.f $(IDIR)/comdir.f  $(IDIR)/comindx.f \
         $(IDIR)/commsys.f \
 	$(IDIR)/comdescr.f $(IDIR)/combufren.f $(IDIR)/comwrite.f
 
-drau2bufr: drau2bufr.o $(LDIR)/libdecx.a $(LBUFRDIR)/libbufr.a
+drau2bufr: drau2bufr.o $(LDIR)/libdecx.a $(LBUFRDIR)/libbufrR64.a
 	$(FC) -o drau2bufr drau2bufr.o \
-	-L $(LBUFRDIR) -L $(LDIR) -ldecx -lbufr 
+	-L $(LBUFRDIR) -L $(LDIR) -ldecx -lbufrR64 
 	@ echo "$(MOVE)"
 
 drau2bufr.o: $(IDIR)/combuff.f $(IDIR)/comdir.f  $(IDIR)/comindx.f \

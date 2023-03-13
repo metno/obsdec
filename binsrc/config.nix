@@ -20,9 +20,9 @@ include config.$(ARCH)
 # occur). Also, the order of the -L directories might be important (if
 # an invalid libbufr.a happens to be in $LDIR)
 $(BDIR)/$(OBSTYPE): nix_$(OBSTYPE).o $(LDIR)/libdec.a \
-		    $(LBUFRDIR)/libbufr.a
+		    $(LBUFRDIR)/libbufrR64.a
 	$(FC) $(FCFLAGS2) -o $(OBSTYPE) nix_$(OBSTYPE).o \
 	-L $(LBUFRDIR) -L $(LDIR) \
-	-ldec -lbufr
+	-ldec -lbufrR64
 	@ echo "$(MOVE)"
 

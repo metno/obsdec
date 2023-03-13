@@ -22,4 +22,4 @@ clean:
 	rm -f *.o bufrdump_netcdf
 
 bufrdump_netcdf: bufrdump_netcdf.o comfilter.f
-	$(FC) $(FCFLAGS) -o bufrdump_netcdf  $< -L $(LDIR) -lbufr
+	$(FC) $(FCFLAGS) -o bufrdump_netcdf  $< -L $(LDIR) -lbufrR64
