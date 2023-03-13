@@ -104,3 +104,7 @@ $(L27): $(IDIR)/paramsh.f $(IDIR)/compref.f $(IDIR)/comship.f $(IDIR)/const.f
 $(L28): $(IDIR)/commsys.f $(IDIR)/commdb.f $(IDIR)/comdir.f
 $(L29): $(IDIR)/parameter.f $(IDIR)/comwt.f $(IDIR)/const.f $(IDIR)/paramq.f \
         $(IDIR)/paramsh.f $(IDIR)/conf.f $(IDIR)/comkey.f $(IDIR)/parabias.f 
+
+
+clean:
+	rm -f *.o

@@ -74,3 +74,6 @@ $(L14): $(IDIR)/comsh.f     $(IDIR)/comshc.f  $(IDIR)/comdir.f
 $(L28): $(IDIR)/commsys.f   $(IDIR)/comdir.f
 $(L32): $(IDIR)/parameter.f $(IDIR)/comwt.f
 $(L33): $(IDIR)/parameter.f $(IDIR)/comwrite.f $(IDIR)/combufren.f
+
+clean:
+	rm -f *.o
