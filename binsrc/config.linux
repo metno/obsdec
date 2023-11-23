@@ -8,7 +8,7 @@ MOVE = "   NOTE: You must manually move compiled file to BINDIR"
 ##########
 
 FC = gfortran
-FCFLAGS1 = -D FORTRAN90 -D LITTLE_ENDIAN
+FCFLAGS1 = -D FORTRAN90 -D LITTLE_ENDIAN -fallow-argument-mismatch
 FCFLAGS2 = 
 
 LBUFRDIR = /usr/local/lib
