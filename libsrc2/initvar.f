@@ -58,7 +58,7 @@ C     ------------------------------------------------------------------
 C           1.   INITIALISE MISSING DATA INDICATOR.
 C                ----------------------------------
 C
-      DATA MINDIC / '17777777777'O /
+      DATA MINDIC / O'17777777777' /
       NSUB=0
 C     -------------------------------------------------------------------
 C*          2.   INITIALIZE DEFAULT VALUES FOR ERROR HANDLING OPTIONS.

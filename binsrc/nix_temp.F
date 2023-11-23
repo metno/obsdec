@@ -252,7 +252,9 @@ c
 C
       ntesttot=0
       do 1010 i=1,200
- 1010    ntesttot=ntesttot+ntest(i)   
+         ntesttot=ntesttot+ntest(i)
+ 1010 continue
+      
       print*,'number of reports written ',ntesttot
 cps      print*,'number of duplicates ',ndup
       print*,' ***n.b.****** PUTBUFR : No testing of duplicates '
@@ -12432,7 +12434,7 @@ C           1.   INITIALISE MISSING DATA INDICATOR.
 C                ----------------------------------
  100  CONTINUE
 C
-      DATA MINDIC / '17777777777'O /
+      DATA MINDIC / O'17777777777' /
       OPS2=.TRUE.
       NSUB=0
 C     -------------------------------------------------------------------
@@ -12469,7 +12471,7 @@ C                 SHORT ( LESS THAN 3 LINES ) BULLETINS AND NATIONAL
 C                 BULLETINS FROM UK AND FRG. BULLETINS IN ERROR ARE NOT
 C                 PRINTED.
 C
-      DATA IOPTS / 676*'17777777777'O,'0'O,'2'O /
+      DATA IOPTS / 676*O'17777777777',O'0',O'2' /
 CRR - For writing error reort on screen
 CRR   DATA IOPTS / 676*'17777777777'O,'2'O,'2'O /
 C
@@ -12519,23 +12521,23 @@ C                -----------------
 C
 cpsjun11      DATA ( MASKS(J),J=1,32)/
       DATA ( MASKS(J),J=1,31)/
-     1                             '1'O,                      '3'O,
-     2                             '7'O,                     '17'O,
-     3                            '37'O,                     '77'O,
-     4                           '177'O,                    '377'O,
-     5                           '777'O,                   '1777'O,
-     6                          '3777'O,                   '7777'O,
-     7                         '17777'O,                  '37777'O,
-     8                         '77777'O,                 '177777'O,
-     9                        '377777'O,                 '777777'O,
-     A                       '1777777'O,                '3777777'O,
-     1                       '7777777'O,               '17777777'O,
-     2                      '37777777'O,               '77777777'O,
-     3                     '177777777'O,              '377777777'O,
-     4                     '777777777'O,             '1777777777'O,
-     5                    '3777777777'O,             '7777777777'O,
+     1                            O'1',                     O'3',
+     2                            O'7',                    O'17',
+     3                           O'37',                    O'77',
+     4                          O'177',                   O'377',
+     5                          O'777',                  O'1777',
+     6                         O'3777',                  O'7777',
+     7                        O'17777',                 O'37777',
+     8                        O'77777',                O'177777',
+     9                       O'377777',                O'777777',
+     A                      O'1777777',               O'3777777',
+     1                      O'7777777',              O'17777777',
+     2                     O'37777777',              O'77777777',
+     3                    O'177777777',             O'377777777',
+     4                    O'777777777',            O'1777777777',
+     5                   O'3777777777',            O'7777777777',
 cpsjun11     6                   '17777777777'O,            '37777777777'O  /
-     6                   '17777777777'O  /
+     6                   O'17777777777'  /
 C
 CRR
 C     --------------------------------------------------------------------
