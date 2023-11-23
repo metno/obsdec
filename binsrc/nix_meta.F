@@ -4391,6 +4391,9 @@ CNH common for directories
 C
       CHARACTER CCCC*4,XCCC*4,XNAME*19
       INTEGER   XNUM1,XNUM2,XNUM3,XLAT,XLONG,XMOH
+cpsnov23
+      CHARACTER*1 ispc
+cpsnov23
 C     ------------------------------------------------------------------
 C*          1.   READ IN STATION LIST.
 C                ---------------------
@@ -4409,11 +4412,17 @@ C
       LON=MINDIC
 C
 C  - Find end of character string. 
+cpsnov23
+      ispc=char(32)
+      ndx=0
+      ndx=index(yppdat(1:80),ispc) - 1
+cpsnov23
 c
 CX    print*,'open meta.station.dat'
       OPEN(UNIT=4,IOSTAT=IOS,ERR=300, 
 C    1            FILE=CSTREAM(MSYS)//'.station.dat',
-     1            FILE='ppdat/meta.station.dat',
+cpsnov23     1            FILE='ppdat/meta.station.dat',
+     1           FILE=YPPDAT(1:ndx)//'meta.station.dat',
      2     FORM='FORMATTED',
 cpsjun11     4     READONLY,
      4     ACTION='READ',
