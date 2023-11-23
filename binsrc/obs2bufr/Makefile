@@ -4,7 +4,7 @@
 # directory).
 
 FC = gfortran
-FCFLAGS1 = -D FORTRAN90 -D LITTLE_ENDIAN
+FCFLAGS1 = -D FORTRAN90 -D LITTLE_ENDIAN -fallow-invalid-boz
 
 IDIR = ../../include2
 LDIR = ../../lib
