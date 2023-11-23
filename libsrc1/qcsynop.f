@@ -422,7 +422,7 @@ C
            ELSE
                 IF(TT-TD.GE.0.0.AND.TT-TD.LE.50.0) ICONF=IPASS
            ENDIF
-           CALL SETINT (ICONF,NTT,NTD,IEND)
+           CALL SETINT (ICONF,NTT,NTD,IEND,0,0,0,0,0,0,0)
 C
 C             DEW POINT DEPRESSION AND PRESENT WEATHER
 C
@@ -432,7 +432,7 @@ C
      X                                IWW.EQ.120.OR.
      X                               (IWW.GE.130.AND.IWW.LE.135)))
      X          ICONF=IFAIL
-                CALL SETINT (ICONF,NTT,NTD,NWW,IEND)
+                CALL SETINT (ICONF,NTT,NTD,NWW,IEND,0,0,0,0,0,0)
            ENDIF
       ENDIF
 C
@@ -448,7 +448,7 @@ C
      X                            (IWW.GE.170.AND.IWW.LE.176).OR.
      X                            (IWW.GE.185.AND.IWW.LE.187)))
      X     ICONF=IFAIL
-           CALL SETINT (ICONF,NTT,NWW,IEND)
+           CALL SETINT (ICONF,NTT,NWW,IEND,0,0,0,0,0,0,0)
            ICONF=IPASS
            IF(TT.LT.-2.0+RABS.AND.((IWW.GE.50.AND.IWW.LE.55).OR.
      X                             (IWW.GE.58.AND.IWW.LE.65).OR.
@@ -462,7 +462,7 @@ C
      X                             (IWW.GE.167.AND.IWW.LE.168).OR.
      X                             (IWW.GE.181.AND.IWW.LE.184)))
      X     ICONF=IFAIL
-           CALL SETINT (ICONF,NTT,NWW,IEND)
+           CALL SETINT (ICONF,NTT,NWW,IEND,0,0,0,0,0,0,0)
       ENDIF
 C
 C                  PRESSURE TENDENCY
@@ -471,11 +471,11 @@ C
            ICONF=IPASS
            IF(PPP.EQ.0.0.AND.IA.NE.0.AND.IA.NE.4.AND.IA.NE.5)
      X     ICONF=IFAIL
-           CALL SETINT (ICONF,NA,NPPP,IEND)
+           CALL SETINT (ICONF,NA,NPPP,IEND,0,0,0,0,0,0,0)
            ICONF=IPASS
            IF(IA.EQ.4.AND.PPP.NE.0.0)
      X     ICONF=IFAIL
-           CALL SETINT (ICONF,NA,NPPP,IEND)
+           CALL SETINT (ICONF,NA,NPPP,IEND,0,0,0,0,0,0,0)
       ENDIF
 C
 C                 VISIBILITY AND PRESENT WEATHER
@@ -495,13 +495,13 @@ C
      X                          (IWW.GE.160.AND.IWW.LE.168).OR.
      X                          (IWW.GE.181.AND.IWW.LE.182)))
      X     ICONF=IFAIL
-           CALL SETINT (ICONF,NVV,NWW,IEND)
+           CALL SETINT (ICONF,NVV,NWW,IEND,0,0,0,0,0,0,0)
            ICONF=IPASS
            IF(VV.GE.1000.0.AND.((IWW.GE.41.AND.IWW.LE.49).OR.
      X                           IWW.EQ.120.OR.
      X                          (IWW.GE.130.AND.IWW.LE.135)))
      X     ICONF=IFAIL
-           CALL SETINT (ICONF,NVV,NWW,IEND)
+           CALL SETINT (ICONF,NVV,NWW,IEND,0,0,0,0,0,0,0)
       ENDIF
 C
 C                 CLOUD COVER AND PRESENT WEATHER
@@ -513,7 +513,7 @@ C
 clilaug97                IF(TC.GE.0.0.AND.TC.LE.100.0.AND.
      X                     (IWW.EQ.43.OR.IWW.EQ.45.OR.
      X                      IWW.EQ.47.OR.IWW.EQ.49))  ICONF=IFAIL
-                CALL SETINT (ICONF,NTC,NWW,IEND)
+                CALL SETINT (ICONF,NTC,NWW,IEND,0,0,0,0,0,0,0)
                 ICONF=IPASS
                 IF(TC.EQ.0.0.AND.(IWW.EQ.3.OR.
      X                           (IWW.GE.14.AND.IWW.LE.17).OR.
@@ -523,14 +523,14 @@ clilaug97                IF(TC.GE.0.0.AND.TC.LE.100.0.AND.
      X                           (IWW.GE.121.AND.IWW.LE.126).OR.
      X                           (IWW.GE.140.AND.IWW.LE.199)))
      X          ICONF=IFAIL
-                CALL SETINT (ICONF,NTC,NWW,IEND)
+                CALL SETINT (ICONF,NTC,NWW,IEND,0,0,0,0,0,0,0)
            ENDIF
            IF(INH.NE.MISS) THEN
                 ICONF=IPASS
                 IF(INH.NE.9.AND.
      X                     (IWW.EQ.43.OR.IWW.EQ.45.OR.
      X                      IWW.EQ.47.OR.IWW.EQ.49))  ICONF=IFAIL
-                CALL SETINT (ICONF,NNH,NWW,IEND)
+                CALL SETINT (ICONF,NNH,NWW,IEND,0,0,0,0,0,0,0)
            ENDIF
       ENDIF
 C
@@ -540,14 +540,14 @@ C
            ICONF=IPASS
 C  TOTAL CLOUD > 0, LOWEST LAYER = 0, NO HIGH CLOUD
            IF(TC.GT.0.0.AND.INH.EQ.0.AND.ICH.EQ.10) ICONF=IFAIL
-           CALL SETINT (ICONF,NTC,NNH,NCH,IEND)
+           CALL SETINT (ICONF,NTC,NNH,NCH,IEND,0,0,0,0,0,0)
            IF(ICM.NE.MISS) THEN
                 ICONF=IPASS
 C  TOTAL CLOUD = 100, LOWEST LAYER NOT COMPLETE,
 C  MEDIUM AND HIGH CLOUD INVISIBLE
                 IF(TC.EQ.100.0.AND.INH.LT.8.AND.ICM.EQ.61.AND.ICH.EQ.60)
      X          ICONF=IFAIL
-                CALL SETINT (ICONF,NTC,NNH,NCM,NCH,IEND)
+                CALL SETINT (ICONF,NTC,NNH,NCM,NCH,IEND,0,0,0,0,0)
            ENDIF
       ENDIF
       IF(INH.NE.MISS) THEN
@@ -555,33 +555,33 @@ C  LOWEST LAYER INVISIBLE BUT CLOUD INFORMATION REPORTED
            IF(ICL.NE.MISS) THEN
                 ICONF=IPASS
                 IF(INH.EQ.9.AND.ICL.GE.30.AND.ICL.LE.39) ICONF=IFAIL
-                CALL SETINT (ICONF,NNH,NCL,IEND)
+                CALL SETINT (ICONF,NNH,NCL,IEND,0,0,0,0,0,0,0)
            ENDIF
            IF(ICM.NE.MISS) THEN
                 ICONF=IPASS
                 IF(INH.EQ.9.AND.ICM.GE.20.AND.ICM.LE.29) ICONF=IFAIL
-                CALL SETINT (ICONF,NNH,NCM,IEND)
+                CALL SETINT (ICONF,NNH,NCM,IEND,0,0,0,0,0,0,0)
            ENDIF
            IF(ICH.NE.MISS) THEN
                 ICONF=IPASS
                 IF(INH.EQ.9.AND.ICH.GE.10.AND.ICH.LE.19) ICONF=IFAIL
-                CALL SETINT (ICONF,NNH,NCH,IEND)
+                CALL SETINT (ICONF,NNH,NCH,IEND,0,0,0,0,0,0,0)
            ENDIF
            IF(H.NE.RMISS) THEN
                 ICONF=IPASS
                 IF(INH.EQ.9.AND.H.GE.0.0) ICONF=IFAIL
-                CALL SETINT (ICONF,NNH,NH,IEND)
+                CALL SETINT (ICONF,NNH,NH,IEND,0,0,0,0,0,0,0)
            ENDIF
 C  LOWEST LAYER = 0, BUT LOW AND/OR MEDIUM CLOUD REPORTED
            IF(ICL.NE.MISS) THEN
                 ICONF=IPASS
                 IF(INH.EQ.0.AND.ICL.GE.31.AND.ICL.LE.39) ICONF=IFAIL
-                CALL SETINT (ICONF,NNH,NCL,IEND)
+                CALL SETINT (ICONF,NNH,NCL,IEND,0,0,0,0,0,0,0)
            ENDIF
            IF(ICM.NE.MISS) THEN
                 ICONF=IPASS
                 IF(INH.EQ.0.AND.ICM.GE.21.AND.ICM.LE.29) ICONF=IFAIL
-                CALL SETINT (ICONF,NNH,NCM,IEND)
+                CALL SETINT (ICONF,NNH,NCM,IEND,0,0,0,0,0,0,0)
            ENDIF
            IF(H.NE.RMISS) THEN
                 ICONF=IPASS
@@ -596,7 +596,7 @@ c                     no cloudbase.
                    ENDIF
                 ENDIF
 cLIL 
-                CALL SETINT (ICONF,NNH,NH,IEND)
+                CALL SETINT (ICONF,NNH,NH,IEND,0,0,0,0,0,0,0)
            ENDIF
       ENDIF
       IF(TC.NE.RMISS) THEN
@@ -604,17 +604,17 @@ C  TOTAL CLOUD = 0, BUT CLOUD TYPES OR HEIGHTS REPORTED
            IF(ICL.NE.MISS) THEN
                 ICONF=IPASS
                 IF(TC.EQ.0.0.AND.ICL.GE.31.AND.ICL.LE.39) ICONF=IFAIL
-                CALL SETINT (ICONF,NTC,NCL,IEND)
+                CALL SETINT (ICONF,NTC,NCL,IEND,0,0,0,0,0,0,0)
            ENDIF
            IF(ICM.NE.MISS) THEN
                 ICONF=IPASS
                 IF(TC.EQ.0.0.AND.ICM.GE.21.AND.ICM.LE.29) ICONF=IFAIL
-                CALL SETINT (ICONF,NTC,NCM,IEND)
+                CALL SETINT (ICONF,NTC,NCM,IEND,0,0,0,0,0,0,0)
            ENDIF
            IF(ICH.NE.MISS) THEN
                 ICONF=IPASS
                 IF(TC.EQ.0.0.AND.ICH.GE.11.AND.ICH.LE.19) ICONF=IFAIL
-                CALL SETINT (ICONF,NTC,NCH,IEND)
+                CALL SETINT (ICONF,NTC,NCH,IEND,0,0,0,0,0,0,0)
            ENDIF
            IF(H.NE.RMISS) THEN
                 ICONF=IPASS
@@ -629,7 +629,7 @@ c                     no cloudbase.
                    ENDIF
                 ENDIF
 cLIL 
-                CALL SETINT (ICONF,NTC,NH,IEND)
+                CALL SETINT (ICONF,NTC,NH,IEND,0,0,0,0,0,0,0)
            ENDIF
       ENDIF
       IF(TC.NE.RMISS.AND.ICL.NE.MISS.AND.ICM.NE.MISS.AND.ICH.NE.MISS)
@@ -638,7 +638,7 @@ cLIL
 C  TOTAL CLOUD > 0, BUT NO CLOUD TYPES REPORTED
             IF(TC.GT.0.0.AND.ICL.EQ.30.AND.ICM.EQ.20.AND.
      X         ICH.EQ.10) ICONF=IFAIL
-            CALL SETINT (ICONF,NTC,NCL,NCM,NCH,IEND)
+            CALL SETINT (ICONF,NTC,NCL,NCM,NCH,IEND,0,0,0,0,0)
       ENDIF
       IF(INH.NE.MISS) THEN
            IF(ICL.NE.MISS) THEN
@@ -647,23 +647,23 @@ C  TOTAL CLOUD > 0, BUT NO CLOUD TYPES REPORTED
 C  LOWEST LAYER EXISTS BUT NO LOW OR MEDIUM CLOUD
                      IF(INH.NE.0.AND.ICL.EQ.30.AND.ICM.EQ.20)
      X                    ICONF=IFAIL
-                     CALL SETINT (ICONF,NNH,NCL,NCM,IEND)
+                     CALL SETINT (ICONF,NNH,NCL,NCM,IEND,0,0,0,0,0,0)
                      ICONF=IPASS
 C  COMPLETE LOWEST LAYER BUT MEDIUM CLOUD NOT INVISIBLE
                      IF(INH.EQ.8.AND.ICL.GE.31.AND.ICL.LE.39.AND.
      X                   ICM.NE.61) ICONF=IFAIL
-                     CALL SETINT (ICONF,NNH,NCL,NCM,IEND)
+                     CALL SETINT (ICONF,NNH,NCL,NCM,IEND,0,0,0,0,0,0)
                 ENDIF
                 ICONF=IPASS
 C  LOWEST LAYER NOT COMPLETE BUT LOW CLOUD INVISIBLE
                 IF(INH.NE.9.AND.ICL.EQ.62) ICONF=IFAIL
-                CALL SETINT (ICONF,NNH,NCL,IEND)
+                CALL SETINT (ICONF,NNH,NCL,IEND,0,0,0,0,0,0,0)
            ENDIF
            IF(ICH.NE.MISS) THEN
                 ICONF=IPASS
 C  COMPLETE LOWEST LAYER BUT HIGH CLOUD NOT INVISIBLE
                 IF(INH.EQ.8.AND.ICH.NE.60) ICONF=IFAIL
-                CALL SETINT (ICONF,NNH,NCH,IEND)
+                CALL SETINT (ICONF,NNH,NCH,IEND,0,0,0,0,0,0,0)
            ENDIF
       ENDIF
 C
@@ -674,13 +674,13 @@ C
                 ICONF=IPASS
 C  MEDIUM CLOUD INVISIBLE BUT HIGH CLOUD NOT INVISIBLE
                 IF(ICM.EQ.61.AND.ICH.NE.60) ICONF=IFAIL
-                CALL SETINT (ICONF,NCM,NCH,IEND)
+                CALL SETINT (ICONF,NCM,NCH,IEND,0,0,0,0,0,0,0)
                 IF(ICL.NE.MISS) THEN
                      ICONF=IPASS
 C  LOW CLOUD INVISIBLE BUT MEDIUM AND HIGH CLOUD NOT INVISIBLE
                      IF(ICL.EQ.62.AND.ICM.NE.61.AND.ICH.NE.60)
      X               ICONF=IFAIL
-                     CALL SETINT (ICONF,NCL,NCM,NCH,IEND)
+                     CALL SETINT (ICONF,NCL,NCM,NCH,IEND,0,0,0,0,0,0)
                 ENDIF
            ENDIF
       ENDIF
@@ -701,7 +701,7 @@ c                low clouds.
               ENDIF
            ENDIF
 cLIL 
-           CALL SETINT (ICONF,NH,NVV,IEND)
+           CALL SETINT (ICONF,NH,NVV,IEND,0,0,0,0,0,0,0)
       ENDIF
       GO TO 400
 C
@@ -784,7 +784,7 @@ C     10 min mean LE Gust
       IF(RGUST.NE.RMISS.AND.FFMAX.NE.RMISS) THEN
            ICONF=IFAIL
            IF(FFMAX.LE.RGUST) ICONF=IPASS
-           CALL SETINT (ICONF,NGUST,NFFMAX,IEND)
+           CALL SETINT (ICONF,NGUST,NFFMAX,IEND,0,0,0,0,0,0,0)
       ENDIF
 C
 C
@@ -792,7 +792,7 @@ C     Tmin LE Tmax
       IF(TMAX.NE.RMISS.AND.TMIN.NE.RMISS) THEN
            ICONF=IFAIL
            IF(TMIN.LE.TMAX) ICONF=IPASS
-           CALL SETINT (ICONF,NTMIN,NTMAX,IEND)
+           CALL SETINT (ICONF,NTMIN,NTMAX,IEND,0,0,0,0,0,0,0)
       ENDIF
 C
 C     Checking against TT and FF is not possible as they are in

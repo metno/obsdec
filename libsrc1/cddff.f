@@ -82,8 +82,8 @@ C
 C
 C         1.1  ONE OF DD OR FF MISSING
 C
-      IF(nDD.EQ.nRMISS) CALL SETINT (IFAIL,IFF,IEND)
-      IF(nFF.EQ.nRMISS) CALL SETINT (IFAIL,IDD,IEND)
+      IF(nDD.EQ.nRMISS) CALL SETINT (IFAIL,IFF,IEND,0,0,0,0,0,0,0,0)
+      IF(nFF.EQ.nRMISS) CALL SETINT (IFAIL,IDD,IEND,0,0,0,0,0,0,0,0)
 C
       IF(nDD.NE.nRMISS) THEN
 C
@@ -98,20 +98,20 @@ C
 C         1.3  CHECK WHETHER DD IS NON-ZERO AND FF IS ZERO
 C
                 IF(nDD.NE.0.AND.nFF.EQ.0)
-     X            CALL SETINT (IFAIL,IDD,IFF,IEND)
+     X            CALL SETINT (IFAIL,IDD,IFF,IEND,0,0,0,0,0,0,0)
 C
 C         1.4  VARIABLE DIRECTION, LIMIT VALUE FOR FF
 C
                 IF(nDD.EQ.nRVAR) THEN
 cps      Remark: FF is measured in bufr units m/s here
                      IF(nFF.GT.3 .AND. nFF.LE.6) THEN
-                           CALL SETINT (IFAIL,IDD,IEND)
+                           CALL SETINT (IFAIL,IDD,IEND,0,0,0,0,0,0,0,0)
                            CALL SETGRS (IFF,3)
                      ELSEIF(nFF.GT.6) THEN
-                           CALL SETINT (IFAIL,IDD,IEND)
+                           CALL SETINT (IFAIL,IDD,IEND,0,0,0,0,0,0,0,0)
                            CALL SETGRS (IFF,2)
                      ELSE
-                           CALL SETINT (IPASS,IDD,IFF,IEND)
+                           CALL SETINT(IPASS,IDD,IFF,IEND,0,0,0,0,0,0,0)
                      ENDIF
                 ENDIF
            ENDIF
