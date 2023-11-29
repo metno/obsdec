@@ -42,3 +42,4 @@ make clean
 ```
 
 Merk at de kompilerte programmene i binsrc (og underkataloger) blir lagt i kildekatalogen hvor kompileringen foregår. Kompileringen forutsetter at libbufr.a (fra ECMWF BUFRDC) er installert i /usr/local/lib.
+
