@@ -96,17 +96,17 @@ C
       msystop=0
 c
       if(narg.lt.3.) then
-             print*,''
-             print*,' Usage: drau dir_file cmsys timestamp <cmsystop>'
-             print*,'                                      (optional)'
-             print*,' where  dir_file  - specification of directories'
-             print*,'        cmsys     - msys file number '
-             print*,'                    6=drau, 15=bath, 16=tesac'
+         print*,''
+         print*,' Usage: drau2bufr dir_file cmsys timestamp <cmsystop>'
+         print*,'                                      (optional)'
+         print*,' where  dir_file  - specification of directories'
+         print*,'        cmsys     - msys file number '
+         print*,'                    6=drau, 15=bath, 16=tesac'
 cpsokt98             print*,'        ctstamp   - mmddhhmm of msys file '
-             print*,'        ctstamp   - yyyymmddhhmm of msys file '
-             print*,'        cmsystop   - no. of records to read '
-             print*,''
-             goto 1020
+         print*,'        ctstamp   - yyyymmddhhmm of msys file '
+         print*,'        cmsystop   - no. of records to read '
+         print*,''
+         goto 1020
       else
          call getarg(1,dir_file)
          call getarg(2,cmsys)

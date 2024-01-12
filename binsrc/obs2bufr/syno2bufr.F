@@ -110,10 +110,10 @@ C
 c
       if(narg.lt.1) then
          print*,''
-         print*,' Usage: nix_syno dir_file cmsys timestamp <cmsystop>'
+         print*,' Usage: syno2bufr dir_file cmsys timestamp <cmsystop>'
          print*,'                                      (optional)'
          print*,' where  dir_file  - specification of directories'
-         print*,'        cmsys     - msys file number '
+         print*,'        cmsys     - msys file number (2 = syno)'
          print*,'        ctstamp   - yyyymmddhhmm of msys file '
          print*,'        cmsystop   - no. of records to read '
          print*,''
