@@ -2023,7 +2023,7 @@ C
 
       implicit none
       integer ihead,ierr
-      integer keep,ifirst,len,nil,i,id,iwind,iret,ios,ibuoy,k,jpt
+      integer keep,ifirst,len,nil,i,id,idd,iwind,iret,ios,ibuoy,k,jpt
       integer j,ic1,ic2,ic3,ic4,ic5,n
 
       INCLUDE 'parameter.f'
@@ -2092,6 +2092,12 @@ C     STATION/SHIP IDENTIFIER RETAINED IN THESE WORDS IN CCITT 5 CHARS.
 
       KINT(12) = 32
       KINT(13) = 32
+cpsjan24 allow for more than 5 letters in ship call sign
+      KINT(109) = 32
+      KINT(110) = 32
+      KINT(111) = 32
+      KINT(112) = 32
+cpsjan24
 
 C***
 C*    CLEAR DATA FOR PREVIOUS REPORT FROM DECODED REPORT HEADER AREA.
@@ -2300,10 +2306,12 @@ C     Check validity of LOLOLOLO
 790   CONTINUE
 
 C     Retain station identifier in character form (if any exists)
+cpsjan24 expanded to allow for more than 5 characters in call sign
       IF (ID.NE.0) THEN
-         IF (ID.GT.5) ID = 5
+         IDD = ID
+         IF (IDD.GT.5) IDD = 5
          J = KPT
-         K = 9 + ID -1
+         K = 9 + IDD -1
          DO I=9,K
 C           If letter encountered for land station convert
 C           it to figure (not for ship's call sign)
@@ -2321,6 +2329,27 @@ C           of letters and digits (and possibly space(s))
             KINT(I) = KCHAR(J)
             J = J + 1
          END DO
+
+         IF (ID.GT.5 .AND. KDEC(4).GT.14) THEN
+            IDD = ID - IDD
+            IF (IDD.GT.4) IDD = 4
+            J = KPT + 5
+            K = 9 + IDD -1
+            DO I=9,K
+C           Reject report if station identifier doesn't consist solely
+C           of letters and digits (and possibly space(s))
+               IF (.NOT. ( (KCHAR(J).GE.48.AND.KCHAR(J).LE.57) ! 0-9
+     *              .OR.(KCHAR(J).GE.65.AND.KCHAR(J).LE.90)    ! A-Z
+     *              .OR.(KCHAR(J).GE.97.AND.KCHAR(J).LE.122)   ! a-z
+     *              .OR.(KCHAR(J).EQ.32.) ))                   ! space
+     *              THEN
+                  KERR = 2
+                  RETURN
+               END IF
+               KINT(100 + I) = KCHAR(J)
+               J = J + 1
+            END DO
+         END IF
       END IF
 
       IF (NIL .EQ. 1) RETURN
@@ -6046,7 +6075,11 @@ C     Get current date (year and month)
       VALUES( 1,NSUB)=1000*NSUB+9
       CVAL(1)= CHAR(KINT(09))//CHAR(KINT(10))//
      *     CHAR(KINT(11))//
-     *     CHAR(KINT(12))//CHAR(KINT(13))//'    '  
+cpsjan24     *     CHAR(KINT(12))//CHAR(KINT(13))//'    '
+     *     CHAR(KINT(12))//CHAR(KINT(13))//
+     *     CHAR(KINT(109))//CHAR(KINT(110))//
+     *     CHAR(KINT(111))//CHAR(KINT(112))
+
       VALUES( 2,NSUB)=999999.                           ! DIRECTION OF MOTION OF MOVING OBSERVING PLATFORM
       IF(KDEC(49).NE.MINDIC) VALUES(2,NSUB)=FLOAT(KDEC(49))
       VALUES( 3,NSUB)=999999.                           ! SPEED OF MOTION OF MOVING OBSERVING PLATFORM
