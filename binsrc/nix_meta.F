@@ -3933,7 +3933,7 @@ C     CHECK IF TCU/CB
 C
 C         TCU
 CX        print*,'TCU'
-          ICTYPE=3
+          ICTYPE=32
 C
       ELSEIF(ITYP.EQ.67)THEN
 C
