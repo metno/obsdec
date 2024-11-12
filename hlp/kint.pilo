@@ -1,0 +1,137 @@
+ 
+         KINT(4) - WMO STATION NUMBER IN INTEGER.
+ 
+ 
+         KDEC(1) - day
+         KDEC(2) - hour
+         KDEC(3) - not used
+         KDEC(4) - INTEGER DENOTING OBSERVATION TYPE.
+                   e.g. =  32 pilo land
+                   e.g. =  33 pilo ship
+         KDEC(5) - LATITUDE IN HUNDREDTHS OF DEGREES ,
+                   NORTH + , SOUTH - .
+         KDEC(6) - LONGITUDE IN HUNDREDTHS OF DEGREES ,
+                   EAST + , WEST - .
+         KDEC(7) - 88
+         KDEC(8) - STATION PRESSURE ELEVATION (H/P) OR IF
+                   NONE EXISTS STATION GROUND ELEVATION (H/A).
+                   IF NEITHER EXIST MINDIC IS RETURNED . VALUE
+                   IS INTEGER IN METRES.
+         KDEC(9) - 0
+         KDEC(10) = DAY OF MONTH ( INTEGER ) . YY
+         KDEC(11) = TIME OF BULLETIN - HOURS ( INTEGER ) . G
+         KDEC(12) = TIME OF BULLETIN - MINS ( INTEGER ) . GG
+         KDEC(13) = INSTRUMENT SPECCIFICATION . a4
+         KDEC(15) - IMPORTANT STATION OR GOOD QUALITY STATION
+                    FLAG BITS SET IN THIS WORD.
+ 
+         KDEC(16) - WMO COUNTRY NUMBER , EXCLUDING FIRST 2
+                    DIGITS ( REGION NUMBER ) . INTEGER.
+         KDEC(17) - WMO REGION NUMBER , INTEGER.
+         KDEC(18) = DATE OF BULLETIN ARRIVAL ( ON VAX )
+         KDEC(19) = TIME  "    "        "      "     "
+         KDEC(20) - used if error in report, NIL indicator
+		  = 0 if no error and not NIL report
+		  = 1 if NIL report
+		  += 2**(KERR-1) for each KERR discovered		    
+         KDEC(21) = 1 IF BULLETIN IS 'COR' or 'CCA' 	set in libsrc/prochdr.f
+		  = 2 IF CCB 
+		  = 3 IF CCC etc
+                  = 0 if no correction field in header
+         KDEC(22) - mindic
+
+	 Before call to UPINT/UGINT/UHINT/UQINT:
+         KDEC(23) = 1 if part A (MjMj = AA, or actually: if either of Mj = A)
+         KDEC(23) = 2 if part B
+         KDEC(23) = 3 if part C
+         KDEC(23) = 4 if part D
+	 Inside and after USINT/... (set in call to LOCSTAT):
+	 KDEC(23) - PRESSURE LEVEL INDICATOR , INTEGER 
+          0 = SEA LEVEL
+          1 = STATION LEVEL
+          2 = 850 HPA		
+          3 = 700 HPA		
+          4 = 500 HPA           
+          5 = 1000 GPM
+          6 = 2000 GPM
+          7 = 3000 GPM
+          8 = 4000 GPM
+          9 = 900 HPA
+ 
+         KDEC(24) - report length  == 384!!??
+
+
+         KINT(1)  - YY
+         KINT(2)  - GG
+         KINT(3)  - a4 INSTRUMENT SPECCIFICATION
+         KINT(4)  - LAND STATION IDENTIFIER (if KDEC(4)=11 or KDEC(4)=14)
+		    SHIP,RIG OR PLATFORM. KINT(4) = 0
+                    BUOY IDENTIFIER (put KDEC(4) = 24)
+         KINT(5)  -  99
+         KINT(6)  -  LALALA
+         KINT(8)  -  LOLOLOLO
+         KINT(7)  -  Quadrant (QC)
+
+         KINT(9)  - Mardsen square (M)
+	 KINT(10) - ULa = 2nd digit in LALALA (unit digit)
+	 KINT(11) - ULo = 3rd digit in LOLOLOLO (unit digit)
+
+	KINT(699) - h0h0h0h0 (height of mobile platform)    KDEC(8)
+	KINT(700) - im
+
+         KINT(12-16) - Station/ship/aircraft identifier
+
+section 2  Standard isobaric surfaces (part A/C)
+	KINT(17+(I-1)*9) 44 / 55
+	KINT(18+(I-1)*9) n    Number of levels
+	KINT(19+(I-1)*9) P1P1
+	KINT(20+(I-1)*9) dd
+	KINT(21+(I-1)*9) fff
+	dd and ff repeats up to 3 times
+	KINT(25+(I-1)*9) 44 / 55
+...
+
+section 3  Max wind level(s) and vertical wind shear (part A/C)
+	KINT(44) 77
+	KINT(45) PmPmPm                                  KDEC(52)
+	KINT(46) dd                                      KDEC(53)
+	KINT(47) fff                                     KDEC(54)
+	KINT(48) 4
+	KINT(49) vbvb                                    KDEC(55)
+	KINT(50) vava                                    KDEC(56)
+...
+	These 7 may repeat INDH times
+
+	KINT(65+(INDH-1)*7) 7 / 6
+	KINT(66+(INDH-1)*7) HmHmHmHm                     KDEC(67)
+	KINT(67+(INDH-1)*7) dd                           KDEC(68)
+	KINT(68+(INDH-1)*7) fff                          KDEC(69)
+	KINT(69+(INDH-1)*7) 4
+	KINT(70+(INDH-1)*7) vbvb                         KDEC(70)
+	KINT(71+(INDH-1)*7) vava                         KDEC(71)
+...     may repeat
+
+section 4  Fixed regional levels and/or significant levels (part B/D)
+	 Fixed levels, up to 20 levels (why not more?)
+         KINT(17+(INDLEV-1)*11) - 9/8/1 Unit of altitude  9: unit 300m
+                                                          8: unit 500m
+                                                          1: unit 300m, base 30000
+         KINT(18+(INDLEV-1)*11) - tn                   
+         KINT(19+(INDLEV-1)*11) - u1                            
+         KINT(20+(INDLEV-1)*11) - u2                     KDEC(25) Geopot height      
+         KINT(21+(INDLEV-1)*11) - u3
+         KINT(22+(INDLEV-1)*11) - dd                     KDEC(26) 
+         KINT(23+(INDLEV-1)*11) - fff                    KDEC(27)
+	 last 2 repeats up to 3 times                    last 3 repeats up to 3 times
+...
+
+21212   Significant levels
+	KINT(237) - 21212
+	KINT(238) - n0n0
+	KINT(239) - P0P0P0                               KDEC(205)
+	KINT(240) - d0d0                                 KDEC(206)
+	KINT(241) - f0f0f0                               KDEC(208)
+...
+
+Section 5  Regional groups
+	Not decoded.

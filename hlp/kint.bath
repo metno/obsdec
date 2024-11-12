@@ -1,0 +1,57 @@
+06/09/27 PS added kdec(29) for kint(17)=k1
+            Reordered indexes in kint and kdec so that subsurface levels
+            start at 100, while other sections has index < 100
+
+MiMiMjMj=JJXX/JJYY/JJVV
+
+kdec(23)=1
+
+kint			kdec
+1 - YY			1			day
+2 - MM						month
+3 - J						unit digit of year
+4 - GG			2
+5 - gg			9			time/hour
+6 - /
+7 - Qc			
+8 - LaLaLaLa		5
+9 - LoLoLoLoLo		6
+10- iu
+11- dd			26
+12- ff			27
+13- 4
+14- Sn			28
+15- TTT			28
+16- 8888
+17- k1                  29
+
+100- z0z0		100
+101- T0T0T0		101
+102- z1z1		102
+103- T1T1T1		103
+.
+.
+  - 999
+  - zz       Depth in hundred metres (the following znzn should be added to this)
+  - z1z1
+  - T1T1T1
+.
+.
+
+38- 00000
+39- 66666
+40- 1
+41- ZdZdZdZd           32
+42- k5
+43- DcDc               36
+44- VcVc               37
+45-53 Call sign -> ident(1-9) (space padded)
+or A1bwnbnbnb
+60- IxIxIx
+61- XrXr
+
+                       4  rdb code figure = 165 buoy
+                                         =  64 bathy
+                                         =  63 tesac
+                       7  buoy identification A1bwnbnbnb (dribu only)
+                       20 error bits

@@ -1,0 +1,57 @@
+MiMiMjMj=KKXX, KKYY
+
+kdec(23)=1
+
+kint			kdec
+1 - YY			1			day
+2 - MM						month
+3 - J						unit digit of year
+4 - GG			2
+5 - gg			9			time/hour
+6 - /
+7 - Qc			
+8 - LaLaLaLa		5
+9 - LoLoLoLoLo		6
+10- iu
+11- dd			26
+12- ff			27
+13- 4
+14- Sn			28
+15- TTT			28
+16- 888
+17- k1                  30
+18- k2
+19- 2
+20- z0z0		38
+21- 3
+22- T0T0T0T0		39
+23- 4
+24- S0S0S0S0		40
+25- 2
+26- z1z1		41
+27- 3
+28- T1T1T1T1		42
+29- 4
+30- S1S1S1S1		43
+.
+.
+.
+4999- 00000
+5000- 66k6
+5001- k4
+5002- k3
+5003- 2
+5004- z0z0z0z0		2000
+5005- d0d0		2001
+5006- c0c0c0		2002
+5007- 2
+5008- z1z1z1z1		2003
+5009- d1d1		2004
+5010- c1c1c1		2005
+.
+.
+.
+8000- 55555
+8001- 1
+8002- ZdZdZdZd 		32
+8003- 8011 Call sign -> ident(1-9) (space padded)

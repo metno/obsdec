@@ -1,0 +1,298 @@
+00/10/19 PS section 3,4,7 and 8, kint(699-700)
+01/04/04 PS corrected kdec(21) and kdec(23)
+01/11/28 PS added explanation to kdec(20)
+06/05/09 PS added kdec(386-390, 422-423)
+06/09/04 PS added section 6
+06/09/19 PS added section 9 and comments on possible overlap
+            corrected section 3 and 4
+07/02/28 PS added kint(619)
+ 
+         KINT(4) - WMO STATION NUMBER IN INTEGER.
+ 
+ 
+         KDEC(1) - day
+         KDEC(2) - hour
+         KDEC(3) - not used
+         KDEC(4) - INTEGER DENOTING OBSERVATION TYPE.
+                   e.g. =  35 temp land
+                   e.g. =  36 temp ship
+                   e.g. = 135 temp drop
+                   e.g. = 137 temp mobile
+         KDEC(5) - LATITUDE IN HUNDREDTHS OF DEGREES ,
+                   NORTH + , SOUTH - .
+         KDEC(6) - LONGITUDE IN HUNDREDTHS OF DEGREES ,
+                   EAST + , WEST - .
+         KDEC(7) -            ?
+         KDEC(8) - STATION PRESSURE ELEVATION (H/P) OR IF
+                   NONE EXISTS STATION GROUND ELEVATION (H/A).
+                   IF NEITHER EXIST MINDIC IS RETURNED . VALUE
+                   IS INTEGER IN METRES.
+         KDEC(9) - 0
+         KDEC(10) = DAY OF MONTH ( INTEGER ) . YY
+         KDEC(11) = TIME OF BULLETIN - HOURS ( INTEGER ) . G
+         KDEC(12) = TIME OF BULLETIN - MINS ( INTEGER ) . GG
+         KDEC(13) - 0
+         KDEC(14) = 0 IF ORIGIN OF REPORT IS FGGE.
+                    1  "   "     "    "    " BRACKNELL.
+                    2  "   "     "    "    " OFFENBACH.
+         KDEC(15) - IMPORTANT STATION OR GOOD QUALITY STATION
+                    FLAG BITS SET IN THIS WORD.
+ 
+         KDEC(16) - WMO COUNTRY NUMBER , EXCLUDING FIRST 2
+                    DIGITS ( REGION NUMBER ) . INTEGER.
+         KDEC(17) - WMO REGION NUMBER , INTEGER.
+         KDEC(18) = DATE OF BULLETIN ARRIVAL ( ON VAX )
+         KDEC(19) = TIME  "    "        "      "     "
+         KDEC(20) - used if error in report, NIL indicator
+		  = 0 if no error and not NIL report
+		  = 1 if NIL report
+		  += 2**(KERR-1) for each KERR discovered		    
+         KDEC(21) = 1 IF BULLETIN IS 'COR' or 'CCA' 	set in libsrc/prochdr.f
+		  = 2 IF CCB 
+		  = 3 IF CCC etc
+                  = 0 if no correction field in header
+         KDEC(22) - mindic
+
+	 Before call to USINT/UEINT/UKINT/ULINT:
+         KDEC(23) = 1 if part A (MjMj = AA, or actually: if either of Mj = A)
+         KDEC(23) = 2 if part B
+         KDEC(23) = 3 if part C
+         KDEC(23) = 4 if part D
+	 Inside and after USINT/... (set in call to LOCSTAT):
+	 KDEC(23) - PRESSURE LEVEL INDICATOR , INTEGER 
+          0 = SEA LEVEL
+          1 = STATION LEVEL
+          2 = 850 HPA		
+          3 = 700 HPA		
+          4 = 500 HPA           
+          5 = 1000 GPM
+          6 = 2000 GPM
+          7 = 3000 GPM
+          8 = 4000 GPM
+          9 = 900 HPA
+ 
+         KDEC(24) - report length
+
+         KDEC(25) - pressure-level   (pppp)
+         KDEC(26) - temperature at pressure-level TTT
+         KDEC(27) - Dew-point-temperature at pressure-level D0D0
+         KDEC(28) - dd Wind direction
+         KDEC(29) - fff Wind speed  (ground level)
+
+         KDEC(30) - pressure-level   (pppp)
+	 KDEC(31) - geopotential (hhh)  calculated from pppp and hhh
+         KDEC(32) - temperature at pressure-level TTT
+         KDEC(33) - Dew-point-temperature at pressure-level D0D0
+         KDEC(34) - dd Wind direction
+         KDEC(35) - fff Wind speed  (level 1)
+          . 
+          .
+         KDEC(95) - fff Wind speed (level 11)
+	
+
+	 KDEC(386) - Nh
+	 KDEC(387) - CL
+	 KDEC(388) - h
+	 KDEC(389) - CM
+	 KDEC(390) - CH
+
+         KDEC(422) - sr   Solar and infrared radiation correction
+         KDEC(423) - rara Radiosonde/system used (Code table 3685)
+ 
+
+         KINT(1)  - YY
+         KINT(2)  - GG
+         KINT(3)  - WIND INDICATOR ID (hundreds of hectopascal)
+         KINT(4)  - LAND STATION IDENTIFIER (if KDEC(4)=11 or KDEC(4)=14)
+		    SHIP,RIG OR PLATFORM. KINT(4) = 0
+                    BUOY IDENTIFIER (put KDEC(4) = 24)
+         KINT(5)  -  99
+         KINT(6)  -  LALALA
+         KINT(8)  -  LOLOLOLO
+         KINT(7)  -  Quadrant (QC)
+
+         KINT(9)  - Mardsen square (M)
+
+	KINT(699) - h0h0h0h0 (height of mobile platform)    KDEC(8)
+	KINT(700) - im
+
+section 2
+         KINT(12-16) - Station/ship/aircraft identifier
+
+         KINT(17) - Level indicator
+         KINT(18) - Pressure at level             KDEC(25)
+         KINT(19) - TT                            KDEC(26) (TT && Ta)
+         KINT(20) - Ta approximate tenths of temperature and sign KDEC
+         KINT(21) - D0D0 dew point depression     KDEC(27)
+         KINT(22) - dd                            KDEC(28)
+         KINT(23) - fff                           KDEC(29)
+.
+.
+12 levels in part A, 5 levels in part C
+
+OR section 5
+         KINT(17) - Level indicator
+         KINT(18) - Pressure at level             KDEC(25)
+         KINT(19) - TT                            KDEC(26) (TT && Ta)
+         KINT(20) - Ta approximate tenths of temperature and sign KDEC
+         KINT(21) - D0D0 dew point depression     KDEC(27)
+.
+. 
+
+There is no upper limit on number of levels in part B and D for
+sections 5 and 6, which in theory thus may extend into parts of KINT
+and KDEC reserved for other sections. For KDEC this is prevented by
+not decoding more than 60 levels from KINT. For KINT in part B, in
+sep06 we added resetting the part of KINT reserved for section 7,8 and
+9 to MINDIC when decoding of those sections starts, in case data has
+been written into those sections due to too many levels in section 6.
+There should be no need for a similar resetting (which is technically
+more difficult) of section 6 to handle more than 60 levels in section
+5, because we expect overwriting of section 6 to be redone when
+decoding of section 5 (which should always be present in temp) begins.
+For temp part D we do not decode section 7,8 and 9, so no need to make
+any changes here.
+
+The maximum number of levels that will be decoded is thus 60 for
+section 5 and 6 - excess levels will just be ignored.
+
+Note that more than 19 levels in section 5 for part B and D implies
+that the part in KINT meant for section 3 (KINT(>=115)) will be used,
+but that is not a problem, as section 3 (and 4) is included in part A
+and C only - it is just a bit confusing.
+
+
+section 3  Tropopause levels - up to 3 levels
+	KINT(108) - 88
+	KINT(109) - PtPtPt                       KDEC(100)
+	KINT(110) - TtTt                         KDEC(101) (TT && Ta)
+	KINT(111) - Tat
+	KINT(112) - DtDt                         KDEC(102)
+	KINT(113) - dtdt                         KDEC(103)
+	KINT(114) - ftftft                       KDEC(104)
+	KINT(115) - 88
+.
+.
+	KINT(128) - ftftft                       KDEC(114)
+
+
+section 4 maximum wind level(s) and vertical wind shear - up to 3 levels 
+	KINT(136) - 77 or 66
+	KINT(137) - PmPmPm                          KDEC(115)
+	KINT(138) - dmdm                            KDEC(116)
+	KINT(139) - fmfmfm                          KDEC(117)
+	KINT(140) - 4   (vertical) wind shear group
+	KINT(141) - vbvb                            KDEC(118)
+	KINT(142) - vava                            KDEC(119)
+	KINT(143) - 77 or 66                        
+.                                                   KDEC(120)
+.
+	KINT(150) - 77 or 66                        
+.
+.
+	KINT(157) - 77 or 66                        
+.
+.
+        KINT(162) - vava                            KDEC(136)
+
+section 6
+	KINT(317) - 21212
+	KINT(318) - nnnn               
+	KINT(319) - PnPnPn             KDEC(206)
+	KINT(320) - dndn               KDEC(207)
+	KINT(321) - fnfnfn             KDEC(208)
+ .
+ .
+
+Note: No more than 60 levels will be decoded. See comments to section 5.
+
+
+
+
+section 7
+	KINT(611) - sr                KDEC(422)
+	KINT(612) - rara              KDEC(423)
+	KINT(613) - sasa
+	KINT(614) - 8
+	KINT(615) - GG
+	KINT(616) - gg
+	KINT(617) - 9
+	KINT(618) - sn
+	KINT(619) - TwTwTw
+
+section 8
+	KINT(558) - 41414
+	KINT(559) - Nh               KDEC(386)
+	KINT(560) - CL               KDEC(387)
+	KINT(561) - h                KDEC(388)
+	KINT(562) - CM               KDEC(389)
+	KINT(563) - CH               KDEC(390)
+
+
+section 9  Regional groups
+	KINT(564)  - 51515 etc    Presence of regional data
+                     Pressure at level         KDEC(392)
+                     hhh                       KDEC(393)
+                     TT                        KDEC(394) (TT & Ta)
+                     Ta                        
+                     TdTd                      KDEC(395)
+                     dd                        KDEC(396)
+                     fff                       KDEC(397)
+...
+Region I:  Pressure = 925 and 775 and 600
+	KINT(565)  92/77/60  Pressure        KDEC(392)
+	KINT(566)  hhh                       KDEC(393)
+	KINT(567)  TT                        KDEC(394) (TT & Ta)
+	KINT(568)  Ta
+	KINT(569)  TdTd                      KDEC(395)
+	KINT(570)  dd                        KDEC(396)
+	KINT(571)  fff                       KDEC(397)
+...
+	KINT(585)  fff                       KDEC(409)
+Region II: 92H9H9H9  T9T9TA9D9D9  D9D9F9F9F9 
+                or 11PPP DDFFF  22800 DDFFF  33600 DDFFF
+        KINT(564)  51525 / 52525
+	KINT(565)  92 = Pressure = 925hPa    KDEC(392)
+	KINT(566)  hhh                       KDEC(393)
+	KINT(567)  TTTa                      KDEC(394)
+	KINT(568)  TdTd                      KDEC(395)
+	KINT(569)  dd                        KDEC(396)
+	KINT(570)  fff                       KDEC(397)
+	KINT(572)  51515
+	KINT(573)  11
+	KINT(574)  Pressure at level         KDEC(392) / KDEC(398)
+	KINT(575)  dd                        KDEC(396) / KDEC(399)
+	KINT(576)  fff                       KDEC(397) / KDEC(400)
+	KINT(577)  22
+	KINT(578)  Pressure at level         KDEC(392) / KDEC(398) / KDEC(404)
+	KINT(579)  dd                        ....
+	KINT(580)  fff                      
+	KINT(581)  33
+	KINT(582)  Pressure at level        
+	KINT(583)  dd                       
+	KINT(584)  fff                       
+Region IV:   Not decoded to KDEC
+	KINT(564)  51515 / 52525
+	KINT(565)  101
+	KINT(566)  ADFADF (??)
+....
+Region VI:
+        KINT(565)  11
+	KINT(566)  Pressure at level         KDEC(392)
+	KINT(567)  dd                        KDEC(396)
+	KINT(568)  fff                       KDEC(397)
+	KINT(569)  22800   (ppp=800)         KDEC(392) / KDEC(398)
+	KINT(570)  dd                        KDEC(396) / KDEC(402)
+	KINT(571)  fff                       KDEC(397) / KDEC(403)
+	KINT(572)  33600   (ppp=600)         KDEC(392) / KDEC(398) / KDEC(404)
+	KINT(573)  dd                        KDEC(396) / KDEC(402) / KDEC(408)
+	KINT(574)  fff                       KDEC(397) / KDEC(403) / KDEC(409)
+	KINT(575)  52525
+	KINT(576)  92      (ppp=925)         etc
+	KINT(577)  hhh
+	KINT(578)  TT
+	KINT(579)  TA
+	KINT(580)  TDTD
+	KINT(581)  DD
+	KINT(582)  FFF
+Section 10  National groups. Not decoded.

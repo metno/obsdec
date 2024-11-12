@@ -1,0 +1,133 @@
+95/04/07 New kint numbers haven't checked kdec yet!
+99/06/28 PS Updated kdec numbers 
+00/09/25 PS kint(16): mindic -> QA
+02/07/15 Added groups in section 4
+00/09/06 z0z0z0z0 <-> kdec(41), not kdec(38)
+kint			kdec
+1 - A1			7
+2 - bW			7
+3 - nbnbnb		7
+4 - YY			1
+5 - MM
+6 - J
+7 - GG			2
+8 - gg			9
+9 - iW			
+10- Qc
+11- LaLaLaLaLa		5      kdec(4)=6 if LaLaLaLaLa, =5 if LaLaLaLa
+12- LoLoLoLoLo		6
+13- 6
+14- Ql
+15- Qt
+16- QA
+17- 111
+18- Qd
+19- Qx
+20- 0
+21- dd			27
+22- ff			28
+23- 1
+24- sn
+25- TTT			29
+26- 2      } 29UUU
+27- sn     }
+28- TdTdTd }            30
+29- 3
+30- P0P0P0P0            26
+31- 4
+32- PPPP		25
+33- 5
+34- a                   32
+35- ppp			33
+36- 222
+37- Qd
+38- Qx
+39- 0
+40- sn
+41- TwTwTw		31
+42- 1
+43- PwaPwa              34
+44- HwaHwa
+45- 20
+46- PwaPwaPwa
+47- 21
+48- HwaHwaHwa
+49- 333
+50- Qd1
+51- Qd2
+52- 8887
+53- k2
+	ipos=48  +6
+54- 2
+55- z0z0z0z0		41
+56- 3
+57- T0T0T0T0		42
+58- 4
+59- S0S0S0S0		43
+	ipos=ipos+6
+.
+.
+.
+(space for 58 levels in KINT, for 53 levels in KDEC)  
+
+
+401- 66
+402- K6
+403- 9
+404- K3
+	ipos=405
+405- 2
+406- z0z0z0z0		201
+407- d0d0		202
+408- c0c0c0		203
+	ipos=ipos+4
+.
+.
+.
+
+701- 444
+702- 1
+703- QP			22
+704- Q2			22
+705- QTW		22
+706- Q4			22
+707- 2
+708- QN			22
+709- QL			22
+710- QA
+	if kint(709)=2:       
+711- Qc
+712- LaLaLaLaLa
+713- LoLoLoLoLoLo
+
+714- 7			
+715- VBVB		35
+716- dBdB		34
+
+717- 8			
+718- ViViViVi		13
+
+719- 9
+720- /			13   
+721- ZdZdZd		13
+
+725 3
+726 ZhZhZhZh
+
+727 4
+728 ZcZcZcZc
+
+729 5
+730 BtBt
+731 XtXt
+
+732 6
+733 AhAhAh
+734 An
+
+
+			kdec(24)=400 length of report
+
+
+Specials: if ddd/ff is L/V or ddd is VRB, then kint(20)=990
+and kdec(27)=510

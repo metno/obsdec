@@ -1,0 +1,147 @@
+         KINT(1)  =          - YY
+         KINT(2)  =          - GG
+         KINT(3)  =          - SPECI/METAR (S/M) 
+         KINT(4)  =          - STATION IDENTIFIER IN CCITT 4 CHARS
+         KINT(5)  =          - STATION IDENTIFIER IN CCITT 4 CHARS
+         KINT(6)  =          - STATION IDENTIFIER IN CCITT 4 CHARS
+         KINT(7)  =          - STATION IDENTIFIER IN CCITT 4 CHARS
+         KINT(8)  =          - GG
+         KINT(9)  =          - gg
+         KINT(10) =          - Z
+Wind
+         KINT(11) =          - ddd
+         KINT(12) =          - ff
+         KINT(13) =          - G
+         KINT(14) =          - FmFm
+         KINT(15) =          - K    K     M   >
+         KINT(16) =          - M or T  or P   > Windindikator
+         KINT(17) =          - T          S   >
+         KINT(18) =          - Wind-indicator
+
+         KINT(19) =          - DnDnDn
+         KINT(20) =          - V
+         KINT(21) =          - DxDxDx
+Visibility
+         KINT(22) =          - CAVOK (0/1/2)
+         KINT(23) =          - VVVV
+         KINT(24) =          - DV
+         KINT(25) =          - DV
+         KINT(26) =          - VXVXVXVX
+         KINT(27) =          - DV
+         KINT(28) =          - DV
+Runway-visibility.
+1
+         KINT(29) =          - R
+         KINT(30) =          - DRDR
+         KINT(31) =          - VRVRVRVR
+         KINT(32) =          - V 
+         KINT(33) =          - VRVRVRVR
+         KINT(34) =          - I
+2
+         KINT(35) =          - R
+         KINT(36) =          - DRDR
+         KINT(37) =          - VRVRVRVR
+         KINT(38) =          - V 
+         KINT(39) =          - VRVRVRVR
+         KINT(40) =          - I
+3
+         KINT(41) =          - R
+         KINT(42) =          - DRDR
+         KINT(43) =          - VRVRVRVR
+         KINT(44) =          - V 
+         KINT(45) =          - VRVRVRVR
+         KINT(46) =          - I
+4
+         KINT(47) =          - R
+         KINT(48) =          - DRDR
+         KINT(49) =          - VRVRVRVR
+         KINT(50) =          - V 
+         KINT(51) =          - VRVRVRVR
+         KINT(52) =          - I
+5
+         KINT(53) =          - R
+         KINT(54) =          - DRDR
+         KINT(55) =          - VRVRVRVR
+         KINT(56) =          - V 
+         KINT(57) =          - VRVRVRVR
+         KINT(58) =          - I
+
+Significant convective clouds.
+         KINT(80) =          - N 
+         KINT(81) =          - N
+         KINT(82) =          - N         
+         KINT(83) =          - hhh
+         KINT(84) =          - Type of s.c.c.
+
+         KINT(85) =          - N         C
+         KINT(86) =          - N         C
+         KINT(87) =          - N         C
+         KINT(88) =          - hhh
+         KINT(89) =          - Type of s.c.c.
+
+Vertical visibility
+         KINT(90) =          - N    V    S
+         KINT(91) =          - N or V or K
+         KINT(92) =          - N         C
+         KINT(93) =          - hhh
+
+         KINT(94) =          - N    V    S
+         KINT(95) =          - N or V or K
+         KINT(96) =          - N         C
+         KINT(97) =          - hhh
+
+         KINT(98) =          - N    V    S
+         KINT(99) =          - N or V or K
+         KINT(100) =          - N         C
+         KINT(101) =          - hhh
+Temp
+         KINT(102) =          - M (-)
+         KINT(103) =          - TT
+         KINT(104) =          - /
+         KINT(105) =          - M (-)
+         KINT(106) =          - TDTD
+Pressure          
+         KINT(107) =          - Q/A
+         KINT(108) =          - PHPHPHPH
+
+Weather
+W'W'
+1
+         KINT(110) =           - Indikator.
+         KINT(111) =          - W'W' IN CCITT 9 CHARS
+         KINT(112) =          - W'W' IN CCITT 9 CHARS
+         KINT(113) =          - W'W' IN CCITT 9 CHARS
+         KINT(114) =          - W'W' IN CCITT 9 CHARS
+         KINT(115) =          - W'W' IN CCITT 9 CHARS
+         KINT(116) =          - W'W' IN CCITT 9 CHARS
+         KINT(117) =          - W'W' IN CCITT 9 CHARS
+         KINT(118) =          - W'W' IN CCITT 9 CHARS
+         KINT(119) =          - W'W' IN CCITT 9 CHARS
+2
+         KINT(120) =          - Indikator.
+         KINT(121) =          - W'W' IN CCITT 9 CHARS
+         KINT(122) =          - W'W' IN CCITT 9 CHARS
+         KINT(123) =          - W'W' IN CCITT 9 CHARS
+         KINT(124) =          - W'W' IN CCITT 9 CHARS
+         KINT(125) =          - W'W' IN CCITT 9 CHARS
+         KINT(126) =          - W'W' IN CCITT 9 CHARS
+         KINT(127) =          - W'W' IN CCITT 9 CHARS
+         KINT(128) =          - W'W' IN CCITT 9 CHARS
+         KINT(129) =          - W'W' IN CCITT 9 CHARS
+3
+         KINT(130) =          - Indikator.
+         KINT(131) =          - W'W' IN CCITT 9 CHARS
+         KINT(132) =          - W'W' IN CCITT 9 CHARS
+         KINT(133) =          - W'W' IN CCITT 9 CHARS
+         KINT(134) =          - W'W' IN CCITT 9 CHARS
+         KINT(135) =          - W'W' IN CCITT 9 CHARS
+         KINT(136) =          - W'W' IN CCITT 9 CHARS
+         KINT(137) =          - W'W' IN CCITT 9 CHARS
+         KINT(138) =          - W'W' IN CCITT 9 CHARS
+         KINT(139) =          - W'W' IN CCITT 9 CHARS
+
+
+
+
+
+

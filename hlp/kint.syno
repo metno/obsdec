@@ -1,0 +1,446 @@
+psmar01 Corrected description of kdec(21) and kdec(23)
+psmar07 Corrected description of kdec(23),kdec(36-37)
+psjan24 Added kint(109-112) for callsign longer than 5 characters
+ 
+         KINT(4) - WMO STATION NUMBER IN INTEGER.
+ 
+ 
+         KDEC(1) - day
+         KDEC(2) - hour
+         KDEC(3) - not used
+         KDEC(4) - INTEGER DENOTING OBSERVATION TYPE. See kdec4.hlp
+                   e.g. =  35 temp land
+                   e.g. =  36 temp ship
+                   e.g. = 135 temp drop
+         KDEC(5) - LATITUDE IN HUNDREDTHS OF DEGREES ,
+                   NORTH + , SOUTH - .
+         KDEC(6) - LONGITUDE IN HUNDREDTHS OF DEGREES ,
+                   EAST + , WEST - .
+         KDEC(7) - 88? char.X ? Not used
+         KDEC(8) - STATION PRESSURE ELEVATION (H/P) OR IF
+                   NONE EXISTS STATION GROUND ELEVATION (H/A).
+                   IF NEITHER EXIST MINDIC IS RETURNED . VALUE
+                   IS INTEGER IN METRES.
+         KDEC(9) - 0 = minute (gg), section 1 and 3 in bufr. Hardcoded value
+         KDEC(10) = DAY OF MONTH ( INTEGER ) . YY
+         KDEC(11) = TIME OF BULLETIN - HOURS ( INTEGER ) . GG
+         KDEC(12) = TIME OF BULLETIN - MINS ( INTEGER ) . gg
+psjan99    kdec(10,11,12) are set in PROCHDR from abbreviated header
+           kdec(12) is never used anywhere
+         KDEC(13) - 0
+         KDEC(14) = 0 IF ORIGIN OF REPORT IS FGGE.
+                    1  "   "     "    "    " BRACKNELL (EGRR).
+                    2  "   "     "    "    " OFFENBACH (EDZW).
+                    3  "   "     "    "    " TOULOUSE (LFPW).
+         KDEC(15) - IMPORTANT STATION OR GOOD QUALITY STATION
+                    FLAG BITS SET IN THIS WORD.
+ 
+         KDEC(16) - WMO COUNTRY NUMBER , EXCLUDING FIRST 2
+                    DIGITS ( REGION NUMBER ) . INTEGER.
+         KDEC(17) - WMO REGION NUMBER , INTEGER.
+         KDEC(18) = DATE OF BULLETIN ARRIVAL ( ON VAX ) - not used
+         KDEC(19) = TIME  "    "        "      "     "  - not used
+         KDEC(20) - used if error in report
+         KDEC(21) = 1 IF BULLETIN IS 'COR' or 'CCA' 	set in libsrc/prochdr.f
+		  = 2 IF CCB 
+		  = 3 IF CCC etc
+                  = 0 if no correction field in header
+         KDEC(22) - mindic
+cpsmar01 Inserted kdec(23) information
+	 KDEC(23) - PRESSURE LEVEL INDICATOR , INTEGER 
+          0 = SEA LEVEL
+          1 = STATION LEVEL
+          2 = 850 HPA		KDEC(23)=2,3,4,9 : High Altitude station
+          3 = 700 HPA		The value of kdec(23) is fetched from 
+          4 = 1000 HPA          station list
+          5 = 1000 GPM
+          6 = 2000 GPM
+          7 = 3000 GPM
+          8 = 4000 GPM
+          9 = 925 HPA
+         KDEC(24) - report length
+         KDEC(25) - wind direction dd
+         KDEC(26) - wind speed     ff
+         KDEC(27) - horizontal visibility   vv
+         KDEC(28) - present weather   ww or wawa
+         KDEC(29) - past weather   w1 or wa1
+         KDEC(30) - past weather   w2 or wa2
+         KDEC(31) - air temperature   ttt
+         KDEC(32) - dew point temperature   tdtdtd
+         KDEC(33) - relative humidity   uuu
+         KDEC(34) - pressure at station level  p0p0p0
+         KDEC(35) - pressure at sea level  
+         KDEC(36) - standard isobaric surface (as given by a3)
+         KDEC(37) - geopotential at standard isobaric surface  hhh
+         KDEC(38) - CHARACTERISTIC OF PRESSURE TENDENCY DURING 3 HOURS  a
+         KDEC(39) - AMOUNT OF PRESSURE TENDENC  ppp
+         KDEC(40) - AMOUNT OF PRECIPITATION  rrr, section 1
+         KDEC(41) - DURATION OF PERIOD OF REFERENCE FOR PRECIP.(HOURS)  tr, sec 1
+         KDEC(42) - TOTAL CLOUD COVER  n
+psokt97         KDEC(43) - HEIGHT OF THE BASE OF LOWEST CLOUD  hh
+         KDEC(43) - HEIGHT OF THE BASE OF LOWEST CLOUD  (in m) h
+ps
+         KDEC(44) - TOTAL LOW CLOUDS Nh
+         KDEC(45) - TYPE LOW CLOUDS  CL
+         KDEC(46) - TYPE MEDIUM CLOUDS  CM
+         KDEC(47) - TYPE HIGH CLOUDS  CH
+         KDEC(48) - 
+ section 2
+         KDEC(49) - DIRECTION OF THE SHIP  DS
+         KDEC(50) - SHIP"S SPEED  VS
+         KDEC(51) - SEA-SURFACE TEMPERATURE  TWTWTW 
+         KDEC(52) - PERIOD OF WAVES IN SECONDS  PWAPWA 
+         KDEC(53) - HEIGHT OF WAVES  HWAHWA  <-- kint(251) if kint(250).eq.70
+                                             <-- kint(58) otherwise
+         KDEC(54) - PERIOD OF WIND WAVES  PWPW 
+         KDEC(55) - HEIGHT OF WIND WAVES  HWHW 
+         KDEC(56) - DIRECTION FROM WHICH SWELL WAVES ARE COMING  DW1DW1
+         KDEC(57) - DIRECTION FROM WHICH SWELL WAVES ARE COMING  DW2DW2
+         KDEC(58) - PERIOD OF SWELL WAVES  PW1PW1
+         KDEC(59) - HEIGHT OF SWELL WAVES  HW1HW1  
+         KDEC(60) - PERIOD OF SWELL WAVES  PW2PW2
+         KDEC(61) - HEIGHT OF SWELL WAVES  HW2HW2  
+         KDEC(62) - TYPE OF ICE  IS
+         KDEC(63) - ICE THICKNESS  ESES (cm)
+         KDEC(64) - RATE OF ICING  RS
+         KDEC(65) - CONCENTRATION OR ARRANGEMENT OF SEA ICE  CI 
+         KDEC(66) - STAGE OF DEVELOPMENT  SI
+         KDEC(67) - LAND ICE  BI
+         KDEC(68) - BEARING OF ICE  DI 
+         KDEC(69) - TREND  ZI
+ section 3
+         KDEC(70) - GROUND MIN TEMPERATURE   TGTG ONLY REGION I
+         KDEC(71) - MAX AIR TEMPERATURE  TXTXTX DIFFERENT FOR DIFFERENT REGIONS
+         KDEC(72) - PERIOD FOR MAX TEMPERATURE  TX VARIES BETWEEN REGIONS
+         KDEC(73) - MIN AIR TEMPERATURE  TNTNTN DIFFERENT FOR DIFFERENT REGIONS
+         KDEC(74) - PERIOD FOR MIN TEMPERATURE  TN VARIES BETWEEN REGIONS
+         KDEC(75) - AMOUNT OF CLOUD NS
+         KDEC(76) - TYPE OF CLOUD C
+         KDEC(77) - HEIGHT OF BASE OF CLOUD LAYER HSHS
+         KDEC(78) - AMOUNT OF CLOUD NS
+         KDEC(79) - TYPE OF CLOUD C
+         KDEC(80) - HEIGHT OF BASE OF CLOUD LAYER HSHS
+         KDEC(81) - AMOUNT OF CLOUD NS
+         KDEC(82) - TYPE OF CLOUD C
+         KDEC(83) - HEIGHT OF BASE OF CLOUD LAYER HSHS
+         KDEC(84) - AMOUNT OF CLOUD NS
+         KDEC(85) - TYPE OF CLOUD C
+         KDEC(86) - HEIGHT OF BASE OF CLOUD LAYER HSHS
+         KDEC(87) - SPSP - Spesial phenomena SPSP spsp
+         KDEC(88) - spsp    Up to 4 groups
+         KDEC(89) - SPSP
+         KDEC(90) - spsp	    
+         KDEC(91) - SPSP
+         KDEC(92) - spsp
+         KDEC(93) - SPSP
+         KDEC(94) - spsp
+
+         KDEC(97) - STATE OF GROUND, NO SNOW OR ICE  E
+         KDEC(98) - STATE OF GROUND, WITH SNOW OR ICE  E`
+         KDEC(99) - DEPTH OF SNOW sss
+         KDEC(100)- INDICATOR FOR DEPTH OF SNOW (997,998,999)
+cpssep04 inserted kdec(101)
+	 KDEC(101)- R24R24R24R24
+cpsjun07 inserted kdec(102-3)
+         KDEC(102) - AMOUNT OF PRECIPITATION  rrr, section 3
+         KDEC(103) - DURATION OF PERIOD OF REFERENCE FOR PRECIP.(HOURS)  tr, sec 3
+
+         KDEC(110)- EVAPORATION/EVAPOTRANSPIRATION  EEE
+         KDEC(111)- DURATION OF SUNSHINE SSS
+         KDEC(112)- NET RADIATION OVER 24 HOUR PERIOD
+ 
+         KDEC(119) - Method of measure- Sea-surf temperature 
+         KDEC(120) - Wet bulb temperature ship
+         KDEC(121) - Method of measure -Wet bulb temperature 
+Section 5
+         KDEC(130) - STATE OF SEA
+         KDEC(131) - OCCURENCE OF MAX MEAN WIND
+         KDEC(132) - MAX MEAN WIND
+         KDEC(133) - ADDITIONAL INFO ON WEATHER
+         KDEC(134) - ADDITIONAL INFO ON WEATHER
+         KDEC(135) - ADDITIONAL INFO ON WEATHER
+         KDEC(136) - 1. decimal of tot. precipitation
+Section3 Group 9SPSPspsp  
+         KDEC(137) - GUST (911ff)
+cpsfeb09 inserted kdec(138-140) - for s2b.F only
+         KDEC(138) - 10 minute gust (910ff)
+         KDEC(139) - 907tt: period for 91(0-4)ff 
+         KDEC(140) - 24-HOUR PRESSURE CHANGE  p24p24p24
+ 
+
+         KINT(1)  - YY
+         KINT(2)  - GG
+         KINT(3)  - IW
+         KINT(3)  - WIND INDICATOR IW 
+			KINT(3)=1 METRES PER SECOND
+			KINT(3)=4 KNOTS
+         KINT(4)  - LAND STATION IDENTIFIER (if KDEC(4)=11 or KDEC(4)=14)
+		    SHIP,RIG OR PLATFORM. KINT(4) = 0
+                    BUOY IDENTIFIER (put KDEC(4) = 24)
+         KINT(5)  -  99
+         KINT(6)  -  LALALA
+         KINT(8)  -  QC
+         KINT(7)  -  LOLOLOLO
+
+	 prochdr:
+	 KINT(10) - YY
+	 KINT(11) - GG
+	 KINT(12) - Iw
+
+         KINT(9)  - STATION/SHIP IDENTIFIER IN CCITT 5 CHARS.
+	    .
+         KINT(13) - STATION/SHIP IDENTIFIER IN CCITT 5 CHARS.
+         kint(10-12) is in PROCHDR uset to extract DTG, but then reset to MINDIC
+section 1
+         KINT(14) - IR
+         KINT(15) - IX
+         KINT(16) - H
+         KINT(17) - VV
+         KINT(18) - N
+         KINT(19) - DD
+         KINT(20) - FF
+         KINT(21) - 1
+         KINT(22) - SN
+         KINT(23) - TTT
+         KINT(24) - 2
+         KINT(25) - SN       or  9
+         KINT(26) - TDTDTD   or  UUU
+         KINT(27) - 3
+         KINT(28) - POPOPOPO
+         KINT(29) - 4
+         KINT(30) - P        or  a3 
+         KINT(31) - PPP      or  hhh
+         KINT(32) - 5
+         KINT(33) - A
+         KINT(34) - PPP
+         KINT(35) - 6
+         KINT(36) - RRR
+         KINT(37) - TR
+         KINT(38) - 7
+         KINT(39) - WW
+         KINT(40) - W1
+         KINT(41) - W2
+         KINT(42) - 8
+         KINT(43) - NH
+         KINT(44) - CL
+         KINT(45) - CM
+         KINT(46) - CH
+         KINT(47) - 9
+         KINT(48) - GG
+         KINT(49) - gg
+section 2
+         KINT(50) - 222
+         KINT(51) - DS
+         KINT(52) - VS
+         KINT(53) - 0
+         KINT(54) - SN
+         KINT(55) - TWTWTW
+         KINT(56) - 1
+         KINT(57) - PWAPWA
+         KINT(58) - HWAHWA
+         KINT(59) - 2
+         KINT(60) - PWPW
+         KINT(61) - HWHA
+         KINT(62) - 3
+         KINT(63) - DW1DW1
+         KINT(64) - DW2DW2
+         KINT(65) - 4
+         KINT(66) - PW1PW1
+         KINT(67) - HW1HW1
+         KINT(68) - 5
+         KINT(69) - PW2PW2
+         KINT(70) - HW2HW2
+         KINT(71) - 6
+         KINT(72) - IS
+         KINT(73) - ESES
+         KINT(74) - RS
+         KINT(75) - 'ICE' INDICATOR
+         KINT(76) - CI
+         KINT(77) - SI
+         KINT(78) - BI
+         KINT(79) - DI
+         KINT(80) - ZI
+section 3
+         KINT(81) - 333
+         KINT(82) - 0
+         KINT(83) - TGTG  or  CS
+         KINT(84) - RC    or  DL
+         KINT(85) - RT    or  DM  
+         KINT(86) -       or  DH
+         KINT(87) - 1
+         KINT(88) - SN
+         KINT(89) - TXTXTX
+         KINT(90) - 2
+         KINT(91) - SN
+         KINT(92) - TNTNTN
+         KINT(93) - 3
+         KINT(94) - E
+         KINT(95) - SN
+         KINT(96) - TGTG
+         KINT(97) - 
+         KINT(98) - 4
+         KINT(99) - E`
+         KINT(100)- SSS
+         KINT(101)- 5            section 3 group 5
+         KINT(102)- 2nd digit in (last) group 5 
+         KINT(103)- 3rd digit in (last) group 5 
+
+         KINT(109-112)  - STATION/SHIP IDENTIFIER IN CCITT CHARACTER NO 6-9
+
+         KINT(113)- 6
+         KINT(114)- RRR
+         KINT(115)- TR
+         KINT(116)- 7
+         KINT(117)- R24R24R24R24
+
+         KINT(121)- 8
+         KINT(122)- NS
+         KINT(123)- C
+         KINT(124)- HSHS
+         KINT(125)- 8
+         KINT(126)- NS
+         KINT(127)- C
+         KINT(128)- HSHS
+         KINT(129)- 8
+         KINT(130)- NS
+         KINT(131)- C
+         KINT(132)- HSHS
+         KINT(133)- 8
+         KINT(134)- C
+         KINT(135)- NS
+         KINT(136)- HSHS
+         KINT(137)- 9
+         KINT(138)- SPSP
+         KINT(139)- spsp
+         KINT(140)- 9
+         KINT(141)- SPSP
+         KINT(142)- spsp
+         KINT(143)- 9
+         KINT(144)- SPSP
+         KINT(145)- spsp
+         KINT(146)- 9
+         KINT(147)- SPSP
+         KINT(148)- spsp
+
+section 4
+         KINT(150)- 444
+         KINT(151)- N`
+         KINT(152)- C`
+         KINT(153)- H`H`
+         KINT(154)- Ct
+
+******************************
+section 5
+	 KINT(155)-555
+
+	 KINT(156)-0
+	 KINT(157)-S
+	 KINT(158)-Tz
+	 KINT(159)-ff
+
+	 KINT(160)-1
+	 KINT(161)-Sn
+	 KINT(162)-T'xT'xT'x
+
+	 KINT(163)-2
+	 KINT(164)-Sn
+	 KINT(165)-T'nT'nT'n
+
+	 KINT(166)-3
+	 KINT(167)-Sn
+	 KINT(168)-TgTgTg
+
+	 KINT(169)-4
+	 KINT(170)-RT
+	 KINT(171)-WD1
+	 KINT(172)-WD2
+	 KINT(173)-WD3
+
+*******************************
+section 3 group 5
+         KINT(181)-           )  if KINT(102) ge 0 and KINT(103) le 3 or EEEIE
+         KINT(182)-             (EVAPOTRANSPIRATION
+         KINT(183)- 
+
+         KINT(184)- 5         )  if KINT(102)= 4
+         KINT(185)- 4         )
+         KINT(186)- g0        )
+         KINT(187)- Sn        )
+         KINT(188)- dT  
+      )
+         KINT(189)- 5         )  if KINT(102)= 5 and KINT(103) ne 3
+         KINT(190)- 5         )
+         KINT(191)- SSS       )
+         KINT(192)- 0
+         KINT(193)- POSITIVE NET RADIATION DURING THE PRECEDING 24 H
+         KINT(194)- 1
+         KINT(195)- NEGATIVE NET RADIATION DURING THE PRECEDING 24 H
+         KINT(196)- 2
+         KINT(197)- GLOBAL SOLAR NET RADIATION DURING THE PRECEDING 24 H
+         KINT(198)- 3
+         KINT(199)- DIFFUSED SOLAR NET RADIATION DURING THE PRECEDING 24 H
+         KINT(200)- 4
+         KINT(201)- DOWNWARD LONG WAVE RADIATION DURING THE PRECEDING 24 H
+         KINT(202)- 5
+         KINT(203)- UPWARD LONG WAVE RADIATION DURING THE PRECEDING 24 H
+         KINT(204)- 6
+         KINT(205)- SHORT WAVE RADIATION DURING THE PRECEDING 24 H
+         KINT(206)-          )  if KINT(102)= 5 and KINT(103) = 3
+         KINT(207)- 
+         KINT(208)- 
+         KINT(209)- 0
+         KINT(210)- POSITIVE NET RADIATION DURING THE PREVIOUS HOUR
+         KINT(211)- 1
+         KINT(212)- NEGATIVE NET RADIATION DURING THE PREVIOUS HOUR
+         KINT(213)- 2
+         KINT(214)- GLOBAL SOLAR NET RADIATION DURING THE PREVIOUS HOUR
+         KINT(215)- 3
+         KINT(216)- DIFFUSED SOLAR NET RADIATION DURING THE PREVIOUS HOUR
+         KINT(217)- 4
+         KINT(218)- DOWNWARD LONG WAVE NET RADIATION DURING THE PREVIOUS HOUR
+         KINT(219)- 5
+         KINT(220)- UPWARD LONG WAVE NET RADIATION DURING THE PREVIOUS HOUR
+         KINT(221)- 6
+         KINT(222)- SHORT WAVE NET RADIATION DURING THE PREVIOUS HOUR
+ 
+
+         KINT(223)- 5         )  if KINT(102)= 6
+         KINT(224)- 6         )
+         KINT(225)- DL        )
+         KINT(226)- DM        )
+         KINT(227)- DH        )
+
+         KINT(228)- 5         )  if KINT(102)= 7
+         KINT(229)- 7         )
+         KINT(230)- C         )
+         KINT(231)- Da        )
+         KINT(232)- eC        )
+
+
+         KINT(233)- 5         )  if KINT(102)= 8
+         KINT(234)- 8         )
+         KINT(235)- P24P24P24 )
+         KINT(236)- 5         )  if KINT(102)= 9
+         KINT(237)- 9         )
+         KINT(238)- P24P24P24 )
+
+section 2
+         KINT(250)- 70
+         KINT(251)- HwaHwaHwa
+section 2
+         KINT(252)- 8
+         KINT(253)- sw
+         KINT(254)- TbTbTb
+section 1
+         KINT(255)- 00
+         KINT(256)- FFF
+section 3                        if 9SPSP = 10,11,12,13 or 14 and spsp = 99
+         KINT(257)- 00
+         KINT(258)- FFF
+
+
+
+
+
+
+
